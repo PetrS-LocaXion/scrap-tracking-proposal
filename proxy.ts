@@ -153,7 +153,7 @@ export function proxy(request: NextRequest) {
     <div class="divider"></div>
     <p class="prepared-label">Prepared for</p>
     <div class="client-logo">
-      <img src="/images/arconic-logo.svg" alt="Arconic" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <img src="/images/arconic-logo.png" alt="Arconic" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
       <span class="client-logo-text" style="display:none">Arconic</span>
     </div>
   </div>

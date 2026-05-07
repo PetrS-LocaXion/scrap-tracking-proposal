@@ -559,12 +559,13 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 }
 .route-overlay { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
 .geofence {
-  position: absolute; z-index: 3; border: 3px solid; border-radius: 4px;
-  background: rgba(255,255,255,.10); box-shadow: 0 0 0 2px rgba(255,255,255,.6);
+  position: absolute; z-index: 3; border: 3px solid; border-radius: 8px;
+  backdrop-filter: blur(1px);
+  box-shadow: 0 0 0 2px rgba(255,255,255,.72), 0 12px 28px rgba(17,24,39,.16);
 }
-.geofence.slitter { left: 65.7%; top: 64.8%; width: 3.4%; height: 5.6%; border-color: #ef4444; }
-.geofence.scale { left: 51.9%; top: 43.8%; width: 4.2%; height: 4.7%; border-color: #0e7afe; }
-.geofence.staging { left: 52.5%; top: 26.2%; width: 4.2%; height: 6.0%; border-color: #22c55e; }
+.geofence.slitter { left: 65.8%; top: 64.4%; width: 3.3%; height: 5.8%; border-color: #ef4444; background: rgba(239,68,68,.18); }
+.geofence.scale { left: 51.9%; top: 43.8%; width: 4.2%; height: 4.9%; border-color: #0e7afe; background: rgba(14,122,254,.16); }
+.geofence.staging { left: 52.6%; top: 26.0%; width: 4.2%; height: 6.0%; border-color: #22c55e; background: rgba(34,197,94,.18); }
 .geofence-label {
   position: absolute; left: 50%; top: calc(100% + 7px); transform: translateX(-50%);
   min-width: max-content; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.94);
@@ -575,17 +576,17 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   position: absolute; z-index: 5; max-width: 260px; padding: 9px 12px; border-radius: 12px;
   background: rgba(255,255,255,.96); border: 1px solid var(--line);
   box-shadow: 0 14px 28px rgba(17,24,39,.14); font-size: 12px; font-weight: 800; line-height: 1.25;
-  opacity: 0; animation: statusCycle 16s linear infinite;
+  opacity: 0; transform: translateY(8px);
 }
-.status-chip.slitter-a { left: 56%; top: 69%; color: #ef4444; animation-delay: 0s; }
-.status-chip.slitter-b { left: 54%; top: 69%; color: #ef4444; animation-delay: 3.1s; }
-.status-chip.scale { left: 38%; top: 37%; color: #0e7afe; animation-delay: 7.0s; }
-.status-chip.staging { left: 58%; top: 19%; color: #16a34a; animation-delay: 11.4s; }
+.status-chip.slitter-a { left: 56%; top: 70%; color: #ef4444; animation: statusFull 28s linear infinite; }
+.status-chip.slitter-b { left: 54%; top: 70%; color: #ef4444; animation: statusLoaded 28s linear infinite; }
+.status-chip.scale { left: 37%; top: 37%; color: #0e7afe; animation: statusScale 28s linear infinite; }
+.status-chip.staging { left: 58%; top: 18%; color: #16a34a; animation: statusStaging 28s linear infinite; }
 .forklift-dot {
-  position: absolute; z-index: 6; left: 54%; top: 78%;
+  position: absolute; z-index: 6; left: 76%; top: 67%;
   width: 18px; height: 18px; border-radius: 50%; background: var(--gradient);
   border: 3px solid #fff; box-shadow: 0 0 0 3px rgba(99,102,241,.22), 0 12px 24px rgba(17,24,39,.22);
-  animation: forkliftMove 16s ease-in-out infinite;
+  animation: forkliftMove 28s ease-in-out infinite;
 }
 .forklift-dot::after {
   content: "Forklift #1"; position: absolute; left: 50%; top: 24px; transform: translateX(-50%);
@@ -593,15 +594,34 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   font-size: 10px; font-weight: 800; box-shadow: 0 8px 18px rgba(17,24,39,.18);
 }
 @keyframes forkliftMove {
-  0%, 8% { left: 54%; top: 78%; }
-  22%, 31% { left: 67.4%; top: 67.4%; }
-  55%, 63% { left: 53.2%; top: 46.0%; }
-  82%, 100% { left: 54.8%; top: 29.0%; }
+  0%, 13% { left: 76%; top: 67%; }
+  24%, 38% { left: 67.4%; top: 67.4%; }
+  46% { left: 70.6%; top: 67.4%; }
+  54% { left: 70.6%; top: 46.2%; }
+  62%, 70% { left: 53.4%; top: 46.2%; }
+  77% { left: 58.0%; top: 46.2%; }
+  86% { left: 58.0%; top: 28.8%; }
+  94%, 100% { left: 55.0%; top: 28.8%; }
 }
-@keyframes statusCycle {
-  0%, 18% { opacity: 0; transform: translateY(8px); }
-  22%, 43% { opacity: 1; transform: translateY(0); }
-  47%, 100% { opacity: 0; transform: translateY(-6px); }
+@keyframes statusFull {
+  0%, 3% { opacity: 0; transform: translateY(8px); }
+  5%, 17% { opacity: 1; transform: translateY(0); }
+  19%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes statusLoaded {
+  0%, 24% { opacity: 0; transform: translateY(8px); }
+  26%, 40% { opacity: 1; transform: translateY(0); }
+  42%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes statusScale {
+  0%, 58% { opacity: 0; transform: translateY(8px); }
+  60%, 73% { opacity: 1; transform: translateY(0); }
+  75%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes statusStaging {
+  0%, 85% { opacity: 0; transform: translateY(8px); }
+  87%, 98% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
 }
 .scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .scope-item { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 12px 32px rgba(17,24,39,.05); }
@@ -652,7 +672,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   <div class="topbar-title">Scrap Tracking Proposal</div>
   <div class="topbar-client">
     <span class="topbar-prepared">Prepared for</span>
-    <img src="/images/arconic-logo.svg" alt="Arconic" class="topbar-client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <img src="/images/arconic-logo.png" alt="Arconic" class="topbar-client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
     <span class="topbar-client-name" style="display:none">Arconic</span>
   </div>
 </header>
@@ -708,8 +728,8 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
               <marker id="redArrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#ef4444"/></marker>
               <marker id="greenArrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#22c55e"/></marker>
             </defs>
-            <path d="M 67.4 67.5 L 70.5 67.5 L 70.5 47 L 54.1 47" fill="none" stroke="#ef4444" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#redArrow)"/>
-            <path d="M 53.8 45.5 L 57.8 45.5 L 57.8 28.8 L 55.6 28.8" fill="none" stroke="#22c55e" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#greenArrow)"/>
+            <path d="M 67.4 67.4 L 70.6 67.4 L 70.6 46.2 L 53.8 46.2" fill="none" stroke="#ef4444" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#redArrow)"/>
+            <path d="M 53.8 46.2 L 58 46.2 L 58 28.8 L 55.2 28.8" fill="none" stroke="#22c55e" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#greenArrow)"/>
           </svg>
           <div class="geofence slitter"><span class="geofence-label">Slitter 11 Scrap Collection</span></div>
           <div class="geofence scale"><span class="geofence-label">Weight Scales</span></div>
@@ -858,7 +878,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
         </div>
         <div class="prop-footer-bottom">
           <div class="arconic-brand">
-            <img src="/images/arconic-logo.svg" alt="Arconic" class="footer-client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <img src="/images/arconic-logo.png" alt="Arconic" class="footer-client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
             <div class="footer-client-name-fallback" style="display:none"><div class="arconic-name">Arconic</div></div>
             <div class="arconic-label">Prepared for Arconic</div>
           </div>

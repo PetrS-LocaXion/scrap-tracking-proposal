@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrap Tracking Proposal | LocaXion for Arconic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue:     #0e7afe;
+  --indigo:   #6366f1;
+  --purple:   #9333ea;
+  --gradient: linear-gradient(105deg, var(--blue) 0%, var(--indigo) 50%, var(--purple) 100%);
+  --text:     #111827;
+  --text-2:   #3f4652;
+  --muted:    #6b7280;
+  --line:     #e5e7eb;
+  --band:     #f5f5f7;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: #fff;
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  padding-right: 0.08em;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
+
+/* ── Topbar ── */
+.topbar {
+  height: 84px;
+  border-bottom: 1px solid rgba(17,24,39,.08);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 0 40px;
+  background: rgba(255,255,255,.96);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+}
+.topbar img { max-height: 58px; height: auto; display: block; object-fit: contain; }
+img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 300px !important; display: block !important; object-fit: contain !important; flex-shrink: 0 !important; }
+.topbar-title { color: #5a5f68; font-size: 16px; font-weight: 700; }
+.topbar-doc {
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+}
+.topbar-client {
+  margin-left: auto; display: flex; align-items: center; gap: 8px;
+}
+.topbar-prepared {
+  font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace; white-space: nowrap;
+}
+.topbar-client-logo { height: 50px; width: auto; max-width: 200px; object-fit: contain; display: block; }
+.topbar-client-name {
+  font-size: 14px; font-weight: 800; letter-spacing: -.02em; color: var(--text);
+}
+
+/* ── Layout container ── */
+.container { width: min(calc(100% - 80px), 1000px); margin: 0 auto; }
+.wide-container { width: min(calc(100% - 80px), 1200px); margin: 0 auto; }
+
+/* ── Cards ── */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: 0 18px 44px rgba(17,24,39,.06);
+  position: relative;
+}
+.accent-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--gradient);
+  border-radius: 26px 26px 0 0;
+}
+
+/* ── Section label / eyebrow ── */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+  font-family: "DM Mono", monospace;
+}
+.section-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-family: "DM Mono", monospace;
+  display: inline-block;
+  padding-top: 12px;
+  border-top: 2px solid var(--blue);
+  margin-bottom: 20px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Hero / section headings ── */
+.section-title {
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 800;
+  letter-spacing: -.05em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 28px;
+  overflow: visible;
+}
+.section-title .gradient-text { letter-spacing: -.04em; }
+.section-lead {
+  color: var(--text-2);
+  font-size: 19px;
+  line-height: 1.5;
+  font-weight: 400;
+  max-width: 680px;
+  margin-bottom: 56px;
+}
+
+/* ── Cover ── */
+.cover { padding: 72px 0 56px; }
+.cover .hero-title {
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 800;
+  letter-spacing: -.055em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 28px;
+  white-space: nowrap;
+  overflow: visible;
+}
+.cover .hero-copy {
+  color: var(--text-2);
+  font-size: 20px;
+  line-height: 1.45;
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px 22px;
+  box-shadow: 0 8px 24px rgba(17,24,39,.05);
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  margin-bottom: 10px;
+}
+.stat-value {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.stat-unit { font-size: 13px; color: var(--muted); }
+
+/* ── Band ── */
+.band { background: var(--band); padding: 48px 0; margin: 64px 0 0; }
+.band-card { padding: 28px 32px; font-size: 17px; line-height: 1.5; }
+.band-card strong { font-weight: 800; }
+
+/* ── Generic section spacing ── */
+.section { padding: 80px 0; }
+.section + .section { border-top: none; }
+.band-section { background: var(--band); }
+
+/* ── Overview section ── */
+.overview-card { padding: 36px 40px; font-size: 17px; line-height: 1.7; color: var(--text-2); }
+.overview-card strong { color: var(--text); font-weight: 600; }
+
+/* ── Capability cards ── */
+.cap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cap-card {
+  border-radius: 22px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.cap-card:hover { transform: translateY(-2px); box-shadow: 0 28px 56px rgba(17,24,39,.10); }
+.cap-card .cap-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.cap-card .cap-icon svg { width: 22px; height: 22px; }
+.cap-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -.025em; line-height: 1.2; margin-top: 2px; }
+.cap-card p { color: var(--text-2); font-size: 15px; line-height: 1.6; margin: 0; }
+.cap-card .cap-tag {
+  margin-top: auto; padding-top: 14px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+}
+
+/* ── Forklift / operator manual card ── */
+.manual-card { overflow: hidden; padding: 32px 36px; }
+.manual-card-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--line);
+}
+.manual-card-head .mc-title { font-size: 20px; font-weight: 800; letter-spacing: -.025em; }
+.manual-card-head .mc-meta {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+}
+.forklift-stage { display: flex; justify-content: center; align-items: center; min-height: 320px; padding: 16px 0; }
+.forklift-wrap { max-width: 520px; width: 100%; position: relative; overflow: hidden; border-radius: 12px; }
+.forklift-wrap img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; position: relative; z-index: 1; }
+.cone-overlay {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 2;
+}
+.sensor-label {
+  position: absolute;
+  background: rgba(255,255,255,.96);
+  border-radius: 8px;
+  font-size: 10px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 9px; white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(17,24,39,.12);
+  z-index: 3;
+}
+.sensor-label.front  { border: 2px solid #ef4444; color: #ef4444; left: 24%; top: 10%; }
+.sensor-label.rear   { border: 2px solid #f59e0b; color: #f59e0b; left: 54%; top: 18%; }
+.sensor-label.compute{ border: 2px solid #3b82f6; color: #3b82f6; left: 48%; top: 58%; }
+.manual-caption {
+  text-align: center; color: var(--muted); font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; margin-top: 8px;
+}
+.subsection-title {
+  font-size: 22px; font-weight: 900; letter-spacing: -.03em;
+  color: var(--text); margin: 36px 0 16px;
+}
+
+/* ── Zone grid ── */
+.zone-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 20px; }
+.zone-card {
+  border-radius: 0 18px 18px 0;
+  border-left: 6px solid;
+  padding: 20px 20px 20px 18px;
+}
+.zone-card.safe   { background: #f0fdf4; border-left-color: #22c55e; }
+.zone-card.alert  { background: #fffbeb; border-left-color: #f59e0b; }
+.zone-card.danger { background: #fef2f2; border-left-color: #ef4444; }
+.zone-pill {
+  display: inline-flex; border-radius: 999px; color: #fff;
+  font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 12px; margin-bottom: 10px;
+}
+.zone-card.safe   .zone-pill { background: #22c55e; }
+.zone-card.alert  .zone-pill { background: #f59e0b; }
+.zone-card.danger .zone-pill { background: #ef4444; }
+.zone-dist { font-size: 26px; font-weight: 900; font-style: italic; letter-spacing: -.03em; margin-bottom: 6px; }
+.zone-name { font-size: 10.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.zone-desc { font-size: 14px; line-height: 1.45; color: var(--text-2); }
+
+/* ── Bird's-eye card ── */
+.bev-card {
+  display: grid; grid-template-columns: 0.38fr 0.62fr;
+  gap: 32px; align-items: center;
+  padding: 36px 40px; margin-top: 20px;
+}
+.bev-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 12px; }
+.bev-card p { color: var(--text-2); font-size: 15px; line-height: 1.6; }
+.bev-card svg { display: block; width: 100%; height: auto; }
+
+/* ── Scope split ── */
+.scope-split { display: grid; grid-template-columns: 1fr 100px 1fr; gap: 0; align-items: stretch; }
+.scope-card {
+  padding: 34px 36px; display: flex; flex-direction: column;
+  border-radius: 24px; border: 1px solid var(--line);
+  box-shadow: 0 12px 32px rgba(17,24,39,.06);
+}
+.scope-card.scope-a { background: linear-gradient(160deg, #fff 0%, #f4f0ff 100%); }
+.scope-card.scope-b { background: linear-gradient(160deg, #fff 0%, #f0f2f5 100%); }
+.scope-tag {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  font-family: "DM Mono", monospace; margin-bottom: 12px;
+}
+.scope-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; margin-bottom: 8px; }
+.scope-card .who {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  font-family: "DM Mono", monospace; margin-bottom: 20px;
+}
+.scope-a .who { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.scope-b .who { color: #374151; }
+.scope-card ul { list-style: none; }
+.scope-card li {
+  padding: 12px 0 12px 26px; border-top: 1px solid rgba(17,24,39,.07);
+  font-size: 14.5px; line-height: 1.5; color: var(--text-2); position: relative;
+}
+.scope-card li:last-child { border-bottom: 1px solid rgba(17,24,39,.07); }
+.scope-card li::before {
+  content: "·";
+  position: absolute; left: 0; top: 13px;
+  font-size: 12px; font-weight: 900;
+  color: var(--blue);
+}
+.scope-card li strong { color: var(--text); font-weight: 600; }
+.scope-divider {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative;
+}
+.scope-divider::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--line) 15%, var(--line) 85%, transparent);
+}
+.scope-pill {
+  background: #fff; border: 1px solid var(--text); border-radius: 8px;
+  padding: 12px 10px; text-align: center; width: auto; min-width: 80px;
+  position: relative; z-index: 2;
+  box-shadow: 0 4px 14px rgba(17,24,39,.08);
+}
+.scope-pill-label {
+  font-size: 8.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+  white-space: nowrap; margin-bottom: 8px;
+}
+.scope-pill-icon {
+  width: 32px; height: 32px; margin: 0 auto;
+  background: var(--gradient); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+}
+.scope-pill-arrow { margin-top: 8px; font-size: 13px; color: var(--text); }
+.scope-caption {
+  margin-bottom: 12px; font-size: 9px; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted); text-align: center;
+  font-family: "DM Mono", monospace; line-height: 1.5; max-width: 80px;
+  position: relative; z-index: 2; background: inherit; padding: 0 4px;
+}
+
+/* ── Architecture diagram frame ── */
+.arch-frame { margin-top: 48px; padding: 36px 36px 28px; overflow: hidden; }
+.arch-frame-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid var(--line);
+}
+.arch-frame-head h4 { font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
+.arch-frame-head .arch-meta {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+}
+.arch-svg-wrap { width: 100%; overflow-x: auto; }
+.arch-svg-wrap svg { width: 100%; height: auto; max-width: 100%; min-width: 580px; display: block; }
+.arch-legend {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 14px;
+  margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line);
+}
+.arch-legend .lg { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-2); }
+.arch-legend .lg .sw { width: 16px; height: 16px; border-radius: 3px; flex-shrink: 0; }
+.arch-legend .lg .sw.a { background: var(--gradient); }
+.arch-legend .lg .sw.b { background: linear-gradient(110deg,#1f2937,#4b5563); }
+.arch-legend .lg .sw.h { background: linear-gradient(90deg,var(--indigo) 50%,#1f2937 50%); }
+.arch-legend .lg strong { color: var(--text); font-weight: 600; margin-right: 4px; }
+
+/* ── HSE dashboard cards ── */
+.hse-section-label {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-family: "DM Mono", monospace;
+  padding-top: 14px; border-top: 2px solid var(--blue);
+  margin-top: 64px; margin-bottom: 24px;
+}
+.hse-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.hse-card {
+  border-radius: 22px; padding: 32px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.hse-card:hover { transform: translateY(-2px); box-shadow: 0 28px 56px rgba(17,24,39,.10); }
+.hse-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+}
+.hse-icon svg { width: 22px; height: 22px; }
+.hse-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -.025em; line-height: 1.2; }
+.hse-card p { color: var(--text-2); font-size: 15px; line-height: 1.6; margin: 0; }
+.hse-tag {
+  margin-top: auto; padding-top: 14px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+}
+
+/* ── OEM section (dark) ── */
+.oem-wrap {
+  background: #0f172a; border-radius: 28px;
+  margin-top: 48px; padding: 40px 44px;
+}
+.oem-wrap h2 {
+  color: #f9fafb; font-size: 24px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 10px;
+}
+.oem-quote { color: #94a3b8; font-size: 16px; line-height: 1.5; margin-bottom: 24px; }
+.oem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.oem-card {
+  background: #1e293b; border: 1px solid rgba(255,255,255,.07);
+  border-radius: 20px; padding: 24px 28px;
+}
+.oem-card h3 { color: #f9fafb; font-size: 20px; font-weight: 800; letter-spacing: -.025em; margin-bottom: 10px; }
+.oem-card p { color: #94a3b8; font-size: 15px; line-height: 1.55; }
+.oem-target {
+  background: rgba(99,102,241,.2); border-radius: 999px; color: #a5b4fc;
+  display: inline-flex; font-size: 11px; font-weight: 800; letter-spacing: .08em;
+  margin-top: 16px; padding: 6px 12px; text-transform: uppercase;
+}
+
+/* ── Deployment cards ── */
+.deploy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.deploy-card { padding: 32px 36px; }
+.deploy-tag {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace; margin-bottom: 12px;
+}
+.deploy-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 12px; }
+.deploy-card > p { color: var(--text-2); font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
+.deploy-card ul { list-style: none; display: grid; gap: 8px; }
+.deploy-card li {
+  font-size: 14px; color: var(--text-2); line-height: 1.4;
+  padding-left: 18px; position: relative;
+}
+.deploy-card li::before {
+  content: "·"; position: absolute; left: 0; font-weight: 800; color: var(--blue);
+}
+
+/* ── Pricing table ── */
+.pricing-card { overflow: hidden; }
+.pricing-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.pricing-table th, .pricing-table td {
+  text-align: left; padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+}
+.pricing-table th {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+  background: var(--band); border-bottom: 1px solid var(--line);
+}
+.pricing-table td.num, .pricing-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.pricing-table td.pilot { text-align: right; font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; }
+.pricing-table th.pilot { text-align: right; color: var(--blue); }
+.pricing-table tr:last-child td { border-bottom: 0; }
+.pricing-table tr.total-row td {
+  border-top: 2px solid var(--text); border-bottom: 0;
+  font-size: 20px; font-weight: 800; letter-spacing: -.02em;
+  padding: 22px 22px;
+}
+.pricing-table tr.total-row td.pilot { color: var(--blue); }
+.pricing-note {
+  padding: 14px 22px; border-top: 1px solid var(--line); background: var(--band);
+  font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+}
+
+/* ── Proposal footer ── */
+.prop-footer {
+  margin-top: 56px; padding: 28px 0 80px; border-top: 1px solid var(--line);
+}
+.prop-footer-top {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 28px;
+}
+.prop-footer-locs { font-size: 13px; font-weight: 500; letter-spacing: .03em; color: var(--muted); }
+.prop-footer-email { font-size: 13px; color: var(--muted); }
+.prop-footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.arconic-brand { display: flex; align-items: center; gap: 12px; }
+.arconic-hex { width: 34px; height: 34px; opacity: .6; }
+.arconic-name { font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+.arconic-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+.footer-client-logo { height: 32px; width: auto; max-width: 160px; object-fit: contain; }
+.arconic-brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.prop-footer-copy {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); font-family: "DM Mono", monospace;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 600ms ease both; }
+.fade-up:nth-child(2) { animation-delay: 80ms; }
+.fade-up:nth-child(3) { animation-delay: 160ms; }
+.fade-up:nth-child(4) { animation-delay: 240ms; }
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .container, .wide-container { width: calc(100% - 48px); }
+}
+
+
+/* -- Scrap tracking proposal additions -- */
+.flow-card { padding: 34px 38px; }
+.flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.flow-step { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+.flow-step .step-num { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.flow-step h3 { font-size: 18px; line-height: 1.2; margin-bottom: 10px; letter-spacing: -.02em; }
+.flow-step p { color: var(--text-2); font-size: 15px; line-height: 1.55; }
+.scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.scope-item { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 12px 32px rgba(17,24,39,.05); }
+.scope-item .scope-kicker { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.scope-item h3 { font-size: 24px; letter-spacing: -.04em; margin-bottom: 12px; }
+.scope-item p, .scope-item li { color: var(--text-2); font-size: 15px; line-height: 1.6; }
+.scope-item ul { padding-left: 18px; display: grid; gap: 8px; }
+.timeline-card { padding: 30px; overflow-x: auto; }
+.timeline-grid { min-width: 900px; display: grid; grid-template-columns: 220px repeat(13, 1fr); gap: 6px; align-items: center; }
+.timeline-head { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 700; color: var(--muted); text-align: center; padding-bottom: 8px; }
+.timeline-label { font-size: 14px; color: var(--text); font-weight: 700; padding: 12px 0; }
+.timeline-track { grid-column: span 13; position: relative; height: 34px; background: #f8fafc; border: 1px solid var(--line); border-radius: 999px; }
+.timeline-bar { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--gradient); color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(99,102,241,.20); }
+.timeline-bar.maint { background: linear-gradient(105deg, #64748b, #111827); }
+.pricing-table tr.section-row td { background: #f8fafc; color: var(--blue); font-family: "DM Mono", monospace; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.pricing-table tr.placeholder td { color: var(--muted); }
+.pricing-table td.item-no { font-family: "DM Mono", monospace; color: var(--muted); font-size: 12px; }
+@media (max-width: 900px) { .flow-grid, .scope-grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 768px) {
+  .topbar { padding: 0 24px; }
+  .topbar img { width: 100px; }
+  img.lx-logo-img { height: 48px !important; width: auto !important; max-width: 240px !important; }
+  .cover .hero-title { font-size: clamp(32px, 7vw, 60px); }
+  .section-title { font-size: clamp(38px, 8vw, 64px); }
+  .cover-stats, .cap-grid, .hse-grid, .deploy-grid, .oem-grid { grid-template-columns: 1fr; }
+  .scope-split { grid-template-columns: 1fr; }
+  .scope-divider { padding: 20px 0; }
+  .scope-divider::before { top: 0; bottom: auto; left: 0; right: 0; width: auto; height: 1px; }
+  .scope-pill { display: flex; gap: 12px; align-items: center; padding: 10px 16px; }
+  .scope-pill-arrow { transform: rotate(90deg); margin: 0; }
+  .bev-card { grid-template-columns: 1fr; }
+  .zone-grid { grid-template-columns: 1fr; }
+  .arch-legend { grid-template-columns: 1fr; }
+  .oem-wrap { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <img src="/images/locaxion-logo.png" alt="LocaXion" class="lx-logo-img" style="height:44px;width:auto;max-width:220px;display:block;object-fit:contain;flex-shrink:0;">
+  <div class="topbar-title">Scrap Tracking Proposal</div>
+  <div class="topbar-client">
+    <span class="topbar-prepared">Prepared for</span>
+    <img src="/images/arconic-logo.svg" alt="Arconic" class="topbar-client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="topbar-client-name" style="display:none">Arconic</span>
+  </div>
+</header>
+
+<main>
+  <section class="section cover">
+    <div class="container">
+      <div class="eyebrow gradient-text">Project Proposal</div>
+      <h1 class="hero-title">Scrap <span class="gradient-text">Tracking</span> Project</h1>
+      <p class="hero-copy">Camera-based forklift tracking, slitter-side production integration, real-time weighing, and consolidated dashboards — deployed across the Hot Mill operation and integrated with Arconic's manufacturing systems.</p>
+      <div class="cover-stats">
+        <div class="stat-card fade-up"><div class="stat-label">Forklifts</div><div class="stat-value">4</div><div class="stat-unit">Camera-RTLS + operator UI</div></div>
+        <div class="stat-card fade-up delay-1"><div class="stat-label">Slitters</div><div class="stat-value">3</div><div class="stat-unit">Operator stations + AS400</div></div>
+        <div class="stat-card fade-up delay-2"><div class="stat-label">Weight Scales</div><div class="stat-value">2</div><div class="stat-unit">IoT-instrumented</div></div>
+        <div class="stat-card fade-up delay-3"><div class="stat-label">Unified View</div><div class="stat-value">One System</div><div class="stat-unit">Automated data capture replacing manual and disparate records</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-section">
+    <div class="container">
+      <div class="section-num">01 / Overview</div>
+      <h2 class="section-title">Project <span class="gradient-text">Overview</span></h2>
+      <article class="overview-card accent-card card">
+        <p>LocaXion proposes a Hot Mill scrap tracking solution that consolidates <strong>location</strong>, <strong>weight</strong>, and <strong>grade</strong> into a single operational picture. Camera-based RTLS continuously tracks four forklifts and ties their movements to QR-coded scrap bins; three slitter-side operator stations integrate live AS400 production data and pre-empt scrap-grade mixing; two scale-side IoT modules publish weight in real time. All datapoints converge on an on-premise LocaXion server, which renders shift-floor dashboards for operators and KPI dashboards for executive review.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-num">02 / System</div>
+      <h2 class="section-title">System <span class="gradient-text">Description</span></h2>
+      <p class="section-lead">An end-to-end walkthrough of a single scrap-movement cycle — from slitter-side classification, through forklift pickup at a QR-coded bin, across the weight scale, and into the consolidated dashboard view.</p>
+    </div>
+    <div class="wide-container">
+      <article class="flow-card accent-card card">
+        <div class="flow-grid">
+          <div class="flow-step"><div class="step-num">Step 01</div><h3>Slitter classification</h3><p>Operator stations surface live AS400 production data and alert before scrap-grade mixing occurs.</p></div>
+          <div class="flow-step"><div class="step-num">Step 02</div><h3>Forklift pickup</h3><p>Forklifts identify QR-coded scrap bins and associate movement with the live scrap record.</p></div>
+          <div class="flow-step"><div class="step-num">Step 03</div><h3>Scale telemetry</h3><p>Two scale-side IoT modules publish real-time weight for each tracked scrap movement.</p></div>
+          <div class="flow-step"><div class="step-num">Step 04</div><h3>Dashboard view</h3><p>Location, grade, and weight converge into operational and executive dashboards on-premise.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section band-section">
+    <div class="container">
+      <div class="section-num">03 / Components</div>
+      <h2 class="section-title">System <span class="gradient-text">Components</span></h2>
+      <p class="section-lead">Four instrumented asset classes feeding a single on-premise consolidation layer. Each component carries its own role in the data flow; together, they close the loop between physical movement and operational visibility.</p>
+      <div class="cap-grid">
+        <article class="cap-card card fade-up"><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h11"/><path d="M14 9h4l3 4v4h-7"/><circle cx="6" cy="19" r="2"/><circle cx="17" cy="19" r="2"/><path d="M3 5v12h11V5H3z"/></svg></div><h3>Forklifts — tracked & operator-aware</h3><p>Camera-based RTLS for continuous, infrastructure-light location tracking, plus in-cab operator screens showing live scrap grade, bin ID, and weight.</p><div class="cap-meta">4 units · RTLS · Operator UI · QR</div></article>
+        <article class="cap-card card fade-up delay-1"><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 12h18"/><path d="M8 6v12M16 6v12"/></svg></div><h3>Slitters — production-aware stations</h3><p>Operator screen at each slitter, surfacing live production data direct from AS400 with alerts before scrap-grade mixing occurs.</p><div class="cap-meta">3 stations · AS400 · Mix prevention</div></article>
+        <article class="cap-card card fade-up delay-2"><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18l-2 14H5L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><path d="M12 11v6"/><path d="M9 14h6"/></svg></div><h3>Weight scales — real-time telemetry</h3><p>Two IoT modules instrument existing scales for continuous weight capture and per-bin history for operations and reconciliation.</p><div class="cap-meta">2 scales · IoT · Weight telemetry</div></article>
+        <article class="cap-card card fade-up delay-3"><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="6" rx="1"/><rect x="2" y="14" width="20" height="6" rx="1"/><path d="M6 7h.01M6 17h.01"/></svg></div><h3>On-premise server — dashboards</h3><p>Hosted within Arconic's network, consolidating scrap location, weight, and grade into shift-floor and executive KPI dashboards.</p><div class="cap-meta">Server · Dashboards · KPIs</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-num">04 / Scope</div>
+      <h2 class="section-title">Project <span class="gradient-text">Scope</span></h2>
+      <p class="section-lead">The deployment is scoped to the Hot Mill, the asset population identified above, and the manufacturing-systems integrations needed to close the data loop.</p>
+      <div class="scope-grid">
+        <article class="scope-item"><div class="scope-kicker gradient-text">A / Site</div><h3>Hot Mill</h3><p>Single-site deployment within Arconic's Hot Mill operation, covering areas of forklift movement, slitter operation, and the two in-scope weight scales.</p></article>
+        <article class="scope-item"><div class="scope-kicker gradient-text">B / Equipment</div><h3>9 instrumented assets</h3><ul><li><strong>4 forklifts</strong> — Camera-RTLS, operator screen, QR reader</li><li><strong>3 slitters</strong> — Operator station with AS400 live data</li><li><strong>2 weight scales</strong> — IoT modules for real-time weight</li></ul></article>
+        <article class="scope-item"><div class="scope-kicker gradient-text">C / Integrations</div><h3>Manufacturing systems</h3><ul><li><strong>OPC UA</strong> — Standardised data exchange with PLCs</li><li><strong>AS400</strong> — Production data feed into slitter UIs</li><li><strong>On-prem server</strong> — Single consolidation point</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-section">
+    <div class="container">
+      <div class="section-num">05 / Timeline</div>
+      <h2 class="section-title">Project <span class="gradient-text">Timeline</span></h2>
+      <p class="section-lead">Project execution runs across twelve weeks from PO to handover, with system maintenance commencing in week thirteen.</p>
+    </div>
+    <div class="wide-container">
+      <article class="timeline-card accent-card card">
+        <div class="timeline-grid">
+          <div></div><div class="timeline-head">W1</div><div class="timeline-head">W2</div><div class="timeline-head">W3</div><div class="timeline-head">W4</div><div class="timeline-head">W5</div><div class="timeline-head">W6</div><div class="timeline-head">W7</div><div class="timeline-head">W8</div><div class="timeline-head">W9</div><div class="timeline-head">W10</div><div class="timeline-head">W11</div><div class="timeline-head">W12</div><div class="timeline-head">W13+</div>
+          <div class="timeline-label">Project setup & kickoff</div><div class="timeline-track"><div class="timeline-bar" style="left:0%;width:15.4%;">2 weeks</div></div>
+          <div class="timeline-label">System design</div><div class="timeline-track"><div class="timeline-bar" style="left:15.4%;width:30.8%;">4 weeks</div></div>
+          <div class="timeline-label">Hardware procurement</div><div class="timeline-track"><div class="timeline-bar" style="left:15.4%;width:38.5%;">5 weeks</div></div>
+          <div class="timeline-label">Integration & remote testing</div><div class="timeline-track"><div class="timeline-bar" style="left:46.2%;width:30.8%;">4 weeks</div></div>
+          <div class="timeline-label">On-site deployment</div><div class="timeline-track"><div class="timeline-bar" style="left:76.9%;width:15.4%;">2 weeks</div></div>
+          <div class="timeline-label">UAT, training & handover</div><div class="timeline-track"><div class="timeline-bar" style="left:84.6%;width:7.7%;">W12</div></div>
+          <div class="timeline-label">System maintenance</div><div class="timeline-track"><div class="timeline-bar maint" style="left:92.3%;width:7.7%;">Ongoing</div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-num">06 / Investment</div>
+      <h2 class="section-title">Project <span class="gradient-text">Pricing</span></h2>
+      <p class="section-lead">Indicative pricing structure for the Hot Mill scrap tracking project. Line items below; final figures to be confirmed in the commercial annex.</p>
+      <article class="pricing-card accent-card card">
+        <table class="pricing-table">
+          <thead><tr><th style="width:12%;">Item №</th><th>Description</th><th class="num" style="width:10%;">Qty</th><th class="num" style="width:16%;">Unit Price</th><th class="num" style="width:16%;">Subtotal</th></tr></thead>
+          <tbody>
+            <tr class="section-row"><td colspan="5">Forklift instrumentation — RTLS, operator UI, QR reader</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr class="section-row"><td colspan="5">Slitter operator stations & AS400 integration</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr class="section-row"><td colspan="5">Weight-scale IoT modules</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr class="section-row"><td colspan="5">On-premise server, software & dashboards</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr class="section-row"><td colspan="5">Manufacturing-systems integration (OPC UA, AS400)</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr class="section-row"><td colspan="5">Project delivery — design, integration, deployment, training</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr class="section-row"><td colspan="5">System maintenance (Week 13+)</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+            <tr class="total-row"><td colspan="4">Project total</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+        <div class="pricing-note">Note · Final commercial terms, payment milestones, and any third-party hardware pass-through are confirmed in the commercial annex prior to PO.</div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>LocaXion IQ LLC · Delaware, USA</div>
+  <div class="footer-brand">LocaXion</div>
+  <div>LXQ-PROP-2026-ARC-SCRAP · v1.0</div>
+</footer>
+
+</body>
+</html>

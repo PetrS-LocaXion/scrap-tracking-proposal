@@ -62,13 +62,14 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   color: var(--muted); font-family: "DM Mono", monospace;
 }
 .topbar-client {
-  margin-left: auto; display: flex; align-items: center; gap: 8px;
+  margin-left: auto; display: flex; align-items: center; gap: 18px;
 }
 .topbar-prepared {
+  margin-right: 8px;
   font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
   color: var(--muted); font-family: "DM Mono", monospace; white-space: nowrap;
 }
-.topbar-client-logo { height: 50px; width: auto; max-width: 200px; object-fit: contain; display: block; }
+.topbar-client-logo { height: 64px; width: auto; max-width: 230px; object-fit: contain; display: block; }
 .topbar-client-name {
   font-size: 14px; font-weight: 800; letter-spacing: -.02em; color: var(--text);
 }
@@ -514,7 +515,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 .arconic-hex { width: 34px; height: 34px; opacity: .6; }
 .arconic-name { font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
 .arconic-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-top: 2px; }
-.footer-client-logo { height: 32px; width: auto; max-width: 160px; object-fit: contain; }
+.footer-client-logo { height: 54px; width: auto; max-width: 190px; object-fit: contain; }
 .arconic-brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .prop-footer-copy {
   font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
@@ -563,9 +564,9 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   backdrop-filter: blur(1px);
   box-shadow: 0 0 0 2px rgba(255,255,255,.72), 0 12px 28px rgba(17,24,39,.16);
 }
-.geofence.slitter { left: 65.8%; top: 64.4%; width: 3.3%; height: 5.8%; border-color: #ef4444; background: rgba(239,68,68,.18); }
-.geofence.scale { left: 51.9%; top: 43.8%; width: 4.2%; height: 4.9%; border-color: #0e7afe; background: rgba(14,122,254,.16); }
-.geofence.staging { left: 52.6%; top: 26.0%; width: 4.2%; height: 6.0%; border-color: #22c55e; background: rgba(34,197,94,.18); }
+.geofence.slitter { left: 65.2%; top: 63.9%; width: 4.7%; height: 7.3%; border-color: #ef4444; background: rgba(239,68,68,.18); }
+.geofence.scale { left: 51.2%; top: 43.0%; width: 5.6%; height: 6.4%; border-color: #0e7afe; background: rgba(14,122,254,.16); }
+.geofence.staging { left: 51.9%; top: 25.3%; width: 5.6%; height: 7.5%; border-color: #22c55e; background: rgba(34,197,94,.18); }
 .geofence-label {
   position: absolute; left: 50%; top: calc(100% + 7px); transform: translateX(-50%);
   min-width: max-content; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.94);
@@ -645,6 +646,9 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   .geofence-label { font-size: 7px; }
   .status-chip { max-width: 190px; font-size: 10px; }
 }
+.cost-image-stack { display: grid; gap: 24px; }
+.cost-image-card { padding: 18px; overflow: hidden; }
+.cost-image-card img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--line); }
 
 @media (max-width: 768px) {
   .topbar { padding: 0 24px; }
@@ -723,14 +727,6 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
           <span>Geofence flow · Bin #25</span>
         </div>
         <div class="facility-map" aria-label="Animated floor layout showing forklift movement from Slitter 11 Scrap Collection to Weight Scales and Scrap Bin Staging">
-          <svg class="route-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <marker id="redArrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#ef4444"/></marker>
-              <marker id="greenArrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#22c55e"/></marker>
-            </defs>
-            <path d="M 67.4 67.4 L 70.6 67.4 L 70.6 46.2 L 53.8 46.2" fill="none" stroke="#ef4444" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#redArrow)"/>
-            <path d="M 53.8 46.2 L 58 46.2 L 58 28.8 L 55.2 28.8" fill="none" stroke="#22c55e" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#greenArrow)"/>
-          </svg>
           <div class="geofence slitter"><span class="geofence-label">Slitter 11 Scrap Collection</span></div>
           <div class="geofence scale"><span class="geofence-label">Weight Scales</span></div>
           <div class="geofence staging"><span class="geofence-label">Scrap Bin Staging</span></div>
@@ -838,38 +834,18 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
     <div class="container">
       <div class="section-num">07 / Internal</div>
       <h2 class="section-title">Internal Costs <span class="gradient-text">Estimate</span></h2>
-      <p class="section-lead">Internal cost basis for project delivery — covering hardware, labour, integration, and ancillary expenses. Maintained separately from the commercial proposal above and not for client distribution.</p>
-      <article class="pricing-card accent-card card">
-        <div class="pricing-table-wrap">
-          <table class="pricing-table">
-            <thead>
-              <tr>
-                <th style="width:12%;">Item №</th>
-                <th>Description</th>
-                <th class="num" style="width:10%;">Qty</th>
-                <th class="num" style="width:16%;">Unit Cost</th>
-                <th class="total" style="width:16%;">Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="section-row"><td colspan="5">Hardware — cost of goods</td></tr>
-              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
-              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
-              <tr class="section-row"><td colspan="5">Software &amp; licensing</td></tr>
-              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
-              <tr class="section-row"><td colspan="5">Labour — engineering, integration, project management</td></tr>
-              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
-              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
-              <tr class="section-row"><td colspan="5">Travel &amp; expenses</td></tr>
-              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
-              <tr class="section-row"><td colspan="5">Maintenance (Week 13+)</td></tr>
-              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
-              <tr class="total-row"><td colspan="4">Total internal cost</td><td class="total">—</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="pricing-note">Internal estimate · Cost basis only · Not for client distribution.</div>
-      </article>
+      <p class="section-lead">Costing tables and ROI model snapshots for the scrap tracking proposal. Image002 is shown first, followed by annual operating costs and 5-year ROI.</p>
+      <div class="cost-image-stack">
+        <article class="cost-image-card accent-card card">
+          <img src="/images/costing-01-capital.png" alt="Capital costs table for scrap tracking proposal">
+        </article>
+        <article class="cost-image-card accent-card card">
+          <img src="/images/costing-02-annual-opex.png" alt="Annual operating costs table for scrap tracking proposal">
+        </article>
+        <article class="cost-image-card accent-card card">
+          <img src="/images/costing-03-roi.png" alt="Savings and ROI table for scrap tracking proposal">
+        </article>
+      </div>
 
       <div class="prop-footer">
         <div class="prop-footer-top">

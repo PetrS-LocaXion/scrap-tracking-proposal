@@ -2,7 +2,7 @@ export default function HomePage() {
   return (
     <iframe
       title="Scrap Tracking Proposal | LocaXion for Arconic"
-      src="/arconic-slides/index.html?v=4"
+      src="/arconic-slides/index.html?v=5"
       style={{
         position: "fixed",
         inset: 0,

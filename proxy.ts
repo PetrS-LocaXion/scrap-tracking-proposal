@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PASSWORD = (process.env.SITE_PASSWORD || "ForkliftSafety").trim();
+const PASSWORD = (process.env.SITE_PASSWORD || "ScrapTracking").trim();
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

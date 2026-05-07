@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const PASSWORD = (process.env.SITE_PASSWORD || "ForkliftSafety").trim();
+const PASSWORD = (process.env.SITE_PASSWORD || "ScrapTracking").trim();
 
 export async function POST(request: Request) {
   const body = await request.json();

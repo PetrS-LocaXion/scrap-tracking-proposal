@@ -75,7 +75,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 
 /* ── Layout container ── */
 .container { width: min(calc(100% - 80px), 1000px); margin: 0 auto; }
-.wide-container { width: min(calc(100% - 80px), 1200px); margin: 0 auto; }
+.wide-container { width: min(calc(100% - 80px), 1000px); margin: 0 auto; }
 
 /* ── Cards ── */
 .card {
@@ -201,7 +201,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 .band-section { background: var(--band); }
 
 /* ── Overview section ── */
-.overview-card { padding: 36px 40px; font-size: 17px; line-height: 1.7; color: var(--text-2); }
+.overview-card { padding: 36px 40px; font-size: 17px; line-height: 1.7; color: var(--text-2); overflow: hidden; }
 .overview-card strong { color: var(--text); font-weight: 600; }
 
 /* ── Capability cards ── */
@@ -466,6 +466,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 /* ── Pricing table ── */
 .pricing-card { overflow: hidden; }
 .pricing-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.pricing-table-wrap { overflow-x: auto; }
 .pricing-table th, .pricing-table td {
   text-align: left; padding: 18px 22px;
   border-bottom: 1px solid var(--line);
@@ -478,13 +479,17 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 .pricing-table td.num, .pricing-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .pricing-table td.pilot { text-align: right; font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; }
 .pricing-table th.pilot { text-align: right; color: var(--blue); }
+.pricing-table td.total { text-align: right; font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; }
+.pricing-table th.total { text-align: right; color: var(--blue); }
 .pricing-table tr:last-child td { border-bottom: 0; }
 .pricing-table tr.total-row td {
   border-top: 2px solid var(--text); border-bottom: 0;
   font-size: 20px; font-weight: 800; letter-spacing: -.02em;
   padding: 22px 22px;
 }
-.pricing-table tr.total-row td.pilot { color: var(--blue); }
+.pricing-table tr.total-row td.pilot, .pricing-table tr.total-row td.total { color: var(--blue); }
+.pricing-table tr.subtotal-row td { font-weight: 800; border-top: 1px solid var(--text); }
+.pricing-table tr.subtotal-row td.label { text-align: right; }
 .pricing-note {
   padding: 14px 22px; border-top: 1px solid var(--line); background: var(--band);
   font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
@@ -533,7 +538,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 
 
 /* -- Scrap tracking proposal additions -- */
-.flow-card { padding: 34px 38px; }
+.flow-card { padding: 34px 38px; overflow: hidden; }
 .flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .flow-step { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
 .flow-step .step-num { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
@@ -552,7 +557,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 .timeline-track { grid-column: span 13; position: relative; height: 34px; background: #f8fafc; border: 1px solid var(--line); border-radius: 999px; }
 .timeline-bar { position: absolute; top: 5px; bottom: 5px; border-radius: 999px; background: var(--gradient); color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px rgba(99,102,241,.20); }
 .timeline-bar.maint { background: linear-gradient(105deg, #64748b, #111827); }
-.pricing-table tr.section-row td { background: #f8fafc; color: var(--blue); font-family: "DM Mono", monospace; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.pricing-table tr.section-row td { background: #f8fafc; color: var(--text); font-size: 16px; font-weight: 900; letter-spacing: -.02em; text-align: center; }
 .pricing-table tr.placeholder td { color: var(--muted); }
 .pricing-table td.item-no { font-family: "DM Mono", monospace; color: var(--muted); font-size: 12px; }
 @media (max-width: 900px) { .flow-grid, .scope-grid { grid-template-columns: 1fr; } }
@@ -684,32 +689,97 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
     <div class="container">
       <div class="section-num">06 / Investment</div>
       <h2 class="section-title">Project <span class="gradient-text">Pricing</span></h2>
-      <p class="section-lead">Indicative pricing structure for the Hot Mill scrap tracking project. Line items below; final figures to be confirmed in the commercial annex.</p>
+      <p class="section-lead">Commercial pricing for the Hot Mill scrap tracking project, including hardware, software, deployment, and project delivery line items.</p>
       <article class="pricing-card accent-card card">
-        <table class="pricing-table">
-          <thead><tr><th style="width:12%;">Item №</th><th>Description</th><th class="num" style="width:10%;">Qty</th><th class="num" style="width:16%;">Unit Price</th><th class="num" style="width:16%;">Subtotal</th></tr></thead>
-          <tbody>
-            <tr class="section-row"><td colspan="5">Forklift instrumentation — RTLS, operator UI, QR reader</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-            <tr class="section-row"><td colspan="5">Slitter operator stations & AS400 integration</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-            <tr class="section-row"><td colspan="5">Weight-scale IoT modules</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-            <tr class="section-row"><td colspan="5">On-premise server, software & dashboards</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-            <tr class="section-row"><td colspan="5">Manufacturing-systems integration (OPC UA, AS400)</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-            <tr class="section-row"><td colspan="5">Project delivery — design, integration, deployment, training</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-            <tr class="section-row"><td colspan="5">System maintenance (Week 13+)</td></tr><tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-            <tr class="total-row"><td colspan="4">Project total</td><td class="num">—</td></tr>
-          </tbody>
-        </table>
+        <div class="pricing-table-wrap">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th class="num" style="width:10%;">Qty</th>
+                <th class="num" style="width:17%;">Unit Price</th>
+                <th class="total" style="width:18%;">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="section-row"><td colspan="4">Hardware</td></tr>
+              <tr><td>Forklift Unit - Infrastructure-less RTLS System</td><td class="num">4</td><td class="num">$8,158</td><td class="total">$32,632</td></tr>
+              <tr><td>Forklift-Mounted QR Code Reader</td><td class="num">4</td><td class="num">$1,280</td><td class="total">$5,120</td></tr>
+              <tr><td>Slitter Unit - Hardware + Integration at each Slitter</td><td class="num">3</td><td class="num">$5,461.5</td><td class="total">$16,384.5</td></tr>
+              <tr><td>Weight Scale Ethernet Module</td><td class="num">2</td><td class="num">$539</td><td class="total">$1,078</td></tr>
+              <tr class="subtotal-row"><td colspan="3" class="label">Subtotal</td><td class="total">$55,214.5</td></tr>
+              <tr class="section-row"><td colspan="4">Software &amp; Deployment</td></tr>
+              <tr><td>Software Integration</td><td class="num">1</td><td class="num">$79,800</td><td class="total">$79,800</td></tr>
+              <tr><td>Software license – annual</td><td class="num">7</td><td class="num">$1,550</td><td class="total">$10,850</td></tr>
+              <tr><td>Project Management</td><td class="num">12</td><td class="num">$1,800</td><td class="total">$21,600</td></tr>
+              <tr><td>Setup &amp; Commissioning</td><td class="num">8</td><td class="num">$1,900</td><td class="total">$15,200</td></tr>
+              <tr><td>System Acceptance Testing</td><td class="num">12</td><td class="num">$1,800</td><td class="total">$21,600</td></tr>
+              <tr><td>System Design &amp; Engineering</td><td class="num">11</td><td class="num">$2,100</td><td class="total">$23,100</td></tr>
+              <tr><td>Travel &amp; Logistics</td><td class="num">8</td><td class="num">$3,600</td><td class="total">$28,800</td></tr>
+              <tr class="subtotal-row"><td colspan="3" class="label">Subtotal</td><td class="total">$200,950</td></tr>
+              <tr class="total-row"><td colspan="3">TOTAL</td><td class="total">$256,164.5</td></tr>
+            </tbody>
+          </table>
+        </div>
         <div class="pricing-note">Note · Final commercial terms, payment milestones, and any third-party hardware pass-through are confirmed in the commercial annex prior to PO.</div>
       </article>
     </div>
   </section>
-</main>
 
-<footer class="footer">
-  <div>LocaXion IQ LLC · Delaware, USA</div>
-  <div class="footer-brand">LocaXion</div>
-  <div>LXQ-PROP-2026-ARC-SCRAP · v1.0</div>
-</footer>
+  <section class="section band-section">
+    <div class="container">
+      <div class="section-num">07 / Internal</div>
+      <h2 class="section-title">Internal Costs <span class="gradient-text">Estimate</span></h2>
+      <p class="section-lead">Internal cost basis for project delivery — covering hardware, labour, integration, and ancillary expenses. Maintained separately from the commercial proposal above and not for client distribution.</p>
+      <article class="pricing-card accent-card card">
+        <div class="pricing-table-wrap">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th style="width:12%;">Item №</th>
+                <th>Description</th>
+                <th class="num" style="width:10%;">Qty</th>
+                <th class="num" style="width:16%;">Unit Cost</th>
+                <th class="total" style="width:16%;">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="section-row"><td colspan="5">Hardware — cost of goods</td></tr>
+              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
+              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
+              <tr class="section-row"><td colspan="5">Software &amp; licensing</td></tr>
+              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
+              <tr class="section-row"><td colspan="5">Labour — engineering, integration, project management</td></tr>
+              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
+              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
+              <tr class="section-row"><td colspan="5">Travel &amp; expenses</td></tr>
+              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
+              <tr class="section-row"><td colspan="5">Maintenance (Week 13+)</td></tr>
+              <tr class="placeholder"><td class="item-no">—</td><td>Line items to be inserted</td><td class="num">—</td><td class="num">—</td><td class="total">—</td></tr>
+              <tr class="total-row"><td colspan="4">Total internal cost</td><td class="total">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pricing-note">Internal estimate · Cost basis only · Not for client distribution.</div>
+      </article>
+
+      <div class="prop-footer">
+        <div class="prop-footer-top">
+          <span class="prop-footer-locs">Houston &nbsp;|&nbsp; Prague &nbsp;|&nbsp; Mumbai &nbsp;|&nbsp; Dubai &nbsp;|&nbsp; Athens</span>
+          <span class="prop-footer-email">info@locaxion.com</span>
+        </div>
+        <div class="prop-footer-bottom">
+          <div class="arconic-brand">
+            <img src="/images/arconic-logo.svg" alt="Arconic" class="footer-client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <div class="footer-client-name-fallback" style="display:none"><div class="arconic-name">Arconic</div></div>
+            <div class="arconic-label">Prepared for Arconic</div>
+          </div>
+          <span class="prop-footer-copy">© 2026 LocaXion · Strictly Confidential</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
 </body>
 </html>

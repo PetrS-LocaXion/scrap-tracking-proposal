@@ -564,25 +564,28 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   backdrop-filter: blur(1px);
   box-shadow: 0 0 0 2px rgba(255,255,255,.72), 0 12px 28px rgba(17,24,39,.16);
 }
-.geofence.slitter { left: 65.2%; top: 63.9%; width: 4.7%; height: 7.3%; border-color: #ef4444; background: rgba(239,68,68,.18); }
-.geofence.scale { left: 51.2%; top: 43.0%; width: 5.6%; height: 6.4%; border-color: #0e7afe; background: rgba(14,122,254,.16); }
-.geofence.staging { left: 51.9%; top: 25.3%; width: 5.6%; height: 7.5%; border-color: #22c55e; background: rgba(34,197,94,.18); }
+.geofence.slitter { left: 65.9%; top: 62.8%; width: 4.9%; height: 9.3%; border-color: #ef4444; background: rgba(239,68,68,.18); }
+.geofence.scale { left: 51.8%; top: 43.0%; width: 5.6%; height: 6.4%; border-color: #0e7afe; background: rgba(14,122,254,.16); }
+.geofence.staging { left: 52.6%; top: 24.4%; width: 5.8%; height: 9.2%; border-color: #22c55e; background: rgba(34,197,94,.18); }
 .geofence-label {
   position: absolute; left: 50%; top: calc(100% + 7px); transform: translateX(-50%);
   min-width: max-content; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.94);
-  color: var(--text); font-family: "DM Mono", monospace; font-size: 9px; font-weight: 800;
+  font-family: "DM Mono", monospace; font-size: 11px; font-weight: 900;
   letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 6px 16px rgba(17,24,39,.12);
 }
+.geofence.slitter .geofence-label { color: #dc2626; }
+.geofence.scale .geofence-label { color: #0e7afe; }
+.geofence.staging .geofence-label { color: #16a34a; }
 .status-chip {
-  position: absolute; z-index: 5; max-width: 260px; padding: 9px 12px; border-radius: 12px;
+  position: absolute; z-index: 8; max-width: 270px; padding: 9px 12px; border-radius: 12px;
   background: rgba(255,255,255,.96); border: 1px solid var(--line);
   box-shadow: 0 14px 28px rgba(17,24,39,.14); font-size: 12px; font-weight: 800; line-height: 1.25;
   opacity: 0; transform: translateY(8px);
 }
-.status-chip.slitter-a { left: 56%; top: 70%; color: #ef4444; animation: statusFull 28s linear infinite; }
-.status-chip.slitter-b { left: 54%; top: 70%; color: #ef4444; animation: statusLoaded 28s linear infinite; }
-.status-chip.scale { left: 37%; top: 37%; color: #0e7afe; animation: statusScale 28s linear infinite; }
-.status-chip.staging { left: 58%; top: 18%; color: #16a34a; animation: statusStaging 28s linear infinite; }
+.status-chip.slitter-a { left: 55%; top: 74%; color: #ef4444; animation: statusFull 28s linear infinite; }
+.status-chip.slitter-b { left: 46%; top: 58%; color: #ef4444; animation: statusLoaded 28s linear infinite; }
+.status-chip.scale { left: 37%; top: 36%; color: #0e7afe; animation: statusScale 28s linear infinite; }
+.status-chip.staging { left: 59%; top: 17%; color: #16a34a; animation: statusStaging 28s linear infinite; }
 .forklift-dot {
   position: absolute; z-index: 6; left: 76%; top: 67%;
   width: 18px; height: 18px; border-radius: 50%; background: var(--gradient);
@@ -596,32 +599,32 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 }
 @keyframes forkliftMove {
   0%, 13% { left: 76%; top: 67%; }
-  24%, 38% { left: 67.4%; top: 67.4%; }
-  46% { left: 70.6%; top: 67.4%; }
-  54% { left: 70.6%; top: 46.2%; }
-  62%, 70% { left: 53.4%; top: 46.2%; }
-  77% { left: 58.0%; top: 46.2%; }
-  86% { left: 58.0%; top: 28.8%; }
-  94%, 100% { left: 55.0%; top: 28.8%; }
+  20%, 41% { left: 68.3%; top: 67.4%; }
+  49% { left: 71.0%; top: 67.4%; }
+  57% { left: 71.0%; top: 46.2%; }
+  64%, 73% { left: 54.2%; top: 46.2%; }
+  80% { left: 58.6%; top: 46.2%; }
+  88% { left: 58.6%; top: 28.8%; }
+  96%, 100% { left: 55.8%; top: 28.8%; }
 }
 @keyframes statusFull {
-  0%, 3% { opacity: 0; transform: translateY(8px); }
-  5%, 17% { opacity: 1; transform: translateY(0); }
-  19%, 100% { opacity: 0; transform: translateY(-6px); }
+  0%, 20% { opacity: 0; transform: translateY(8px); }
+  22%, 34% { opacity: 1; transform: translateY(0); }
+  36%, 100% { opacity: 0; transform: translateY(-6px); }
 }
 @keyframes statusLoaded {
-  0%, 24% { opacity: 0; transform: translateY(8px); }
-  26%, 40% { opacity: 1; transform: translateY(0); }
-  42%, 100% { opacity: 0; transform: translateY(-6px); }
+  0%, 35% { opacity: 0; transform: translateY(8px); }
+  37%, 49% { opacity: 1; transform: translateY(0); }
+  51%, 100% { opacity: 0; transform: translateY(-6px); }
 }
 @keyframes statusScale {
-  0%, 58% { opacity: 0; transform: translateY(8px); }
-  60%, 73% { opacity: 1; transform: translateY(0); }
-  75%, 100% { opacity: 0; transform: translateY(-6px); }
+  0%, 64% { opacity: 0; transform: translateY(8px); }
+  66%, 78% { opacity: 1; transform: translateY(0); }
+  80%, 100% { opacity: 0; transform: translateY(-6px); }
 }
 @keyframes statusStaging {
-  0%, 85% { opacity: 0; transform: translateY(8px); }
-  87%, 98% { opacity: 1; transform: translateY(0); }
+  0%, 88% { opacity: 0; transform: translateY(8px); }
+  90%, 99% { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(-6px); }
 }
 .scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -646,9 +649,29 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
   .geofence-label { font-size: 7px; }
   .status-chip { max-width: 190px; font-size: 10px; }
 }
-.cost-image-stack { display: grid; gap: 24px; }
-.cost-image-card { padding: 18px; overflow: hidden; }
-.cost-image-card img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--line); }
+.model-section { display: grid; gap: 28px; }
+.model-block { padding: 26px 28px; overflow: hidden; }
+.model-block h3 { font-size: 18px; font-weight: 900; letter-spacing: -.03em; margin-bottom: 14px; display: flex; justify-content: space-between; gap: 16px; }
+.model-pill { color: var(--blue); background: rgba(14,122,254,.08); padding: 4px 8px; border-radius: 8px; font-size: 12px; font-family: "DM Mono", monospace; }
+.model-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.model-table th, .model-table td { padding: 13px 14px; border-bottom: 1px solid var(--line); text-align: left; }
+.model-table th { color: var(--muted); background: var(--band); font-size: 10px; font-family: "DM Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+.model-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.model-table tfoot td { font-size: 16px; font-weight: 900; background: var(--band); border-bottom: 0; }
+.model-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+.model-card { border: 1px solid var(--line); border-radius: 18px; padding: 20px; background: #fff; }
+.model-card .label { color: var(--muted); font-family: "DM Mono", monospace; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
+.model-card .value { font-size: 28px; font-weight: 900; letter-spacing: -.04em; }
+.model-card .note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.category-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 18px; }
+.category-card { padding: 16px; text-align: center; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.category-card .cat { color: var(--muted); font-family: "DM Mono", monospace; font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
+.category-card .amount { font-size: 18px; font-weight: 900; }
+.bar-card { padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: #fff; margin-bottom: 22px; }
+.bar-chart { height: 170px; display: grid; grid-template-columns: repeat(6, 1fr); align-items: end; gap: 8px; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.bar { display: flex; align-items: end; justify-content: center; color: #fff; font-size: 10px; font-weight: 900; border-radius: 5px 5px 0 0; min-height: 6px; background: linear-gradient(180deg,#34d399,#10b981); }
+.bar.negative { background: linear-gradient(180deg,#fb7185,#ef4444); }
+@media (max-width: 900px) { .model-cards, .category-row { grid-template-columns: 1fr; } }
 
 @media (max-width: 768px) {
   .topbar { padding: 0 24px; }
@@ -834,16 +857,96 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
     <div class="container">
       <div class="section-num">07 / Internal</div>
       <h2 class="section-title">Internal Costs <span class="gradient-text">Estimate</span></h2>
-      <p class="section-lead">Costing tables and ROI model snapshots for the scrap tracking proposal. Image002 is shown first, followed by annual operating costs and 5-year ROI.</p>
-      <div class="cost-image-stack">
-        <article class="cost-image-card accent-card card">
-          <img src="/images/costing-01-capital.png" alt="Capital costs table for scrap tracking proposal">
+      <p class="section-lead">Redrawn cost model covering capital costs, annual operating costs, and 5-year savings and ROI.</p>
+      <div class="model-section">
+        <article class="model-block accent-card card">
+          <h3>Capital Costs <span class="model-pill">$75,920.10</span></h3>
+          <table class="model-table">
+            <thead><tr><th>Line Item</th><th class="num">Unit Cost</th><th class="num">Qty</th><th class="num">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Forklift Unit – Infrastructure-less RTLS System</td><td class="num">$7,358.90</td><td class="num">4</td><td class="num">$29,435.60</td></tr>
+              <tr><td>Forklift-Mounted QR Code Reader</td><td class="num">$850.00</td><td class="num">4</td><td class="num">$3,400.00</td></tr>
+              <tr><td>Machine Unit – Hardware + Integration at each Machine</td><td class="num">$5,461.50</td><td class="num">3</td><td class="num">$16,384.50</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="3">Hardware</td><td class="num">$49,220.10</td></tr></tfoot>
+          </table>
+          <table class="model-table" style="margin-top:24px;">
+            <thead><tr><th>Line Item</th><th class="num">Unit Cost</th><th class="num">Qty</th><th class="num">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Pallet QR Tags</td><td class="num">$20.00</td><td class="num">1000</td><td class="num">$20,000.00</td></tr>
+              <tr><td>Application Labor – placement &amp; validation</td><td class="num">$30/hr</td><td class="num">80 hrs</td><td class="num">$2,400.00</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="3">QR Code Initial Supply</td><td class="num">$22,400.00</td></tr></tfoot>
+          </table>
+          <table class="model-table" style="margin-top:24px;">
+            <thead><tr><th>Line Item</th><th class="num">Unit Cost</th><th class="num">Qty</th><th class="num">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Forklift Installation Labor (4 units × 3 hrs)</td><td class="num">$125/hr</td><td class="num">12 hrs</td><td class="num">$1,500.00</td></tr>
+              <tr><td>Vibration buffer, bolts, misc hardware</td><td class="num">$100.00</td><td class="num">4</td><td class="num">$400.00</td></tr>
+              <tr><td>IT / Admin Coordination</td><td class="num">$80/hr</td><td class="num">30 hrs</td><td class="num">$2,400.00</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="3">Installation</td><td class="num">$4,300.00</td></tr></tfoot>
+          </table>
         </article>
-        <article class="cost-image-card accent-card card">
-          <img src="/images/costing-02-annual-opex.png" alt="Annual operating costs table for scrap tracking proposal">
+
+        <article class="model-block accent-card card">
+          <h3>Annual Operating</h3>
+          <div class="model-cards">
+            <div class="model-card"><div class="label">Total Annual Opex</div><div class="value">$25,911</div><div class="note">Per year, steady-state</div></div>
+            <div class="model-card"><div class="label">Per Unit/Month</div><div class="value">$308</div><div class="note">7 units</div></div>
+            <div class="model-card"><div class="label">Largest Driver</div><div class="value">SW Licenses</div><div class="note">$13,300/yr (51%)</div></div>
+          </div>
+          <div class="category-row">
+            <div class="category-card"><div class="cat">Software</div><div class="amount">$13,300</div><div class="note">51%</div></div>
+            <div class="category-card"><div class="cat">Hardware Maint.</div><div class="amount">$8,377</div><div class="note">32%</div></div>
+            <div class="category-card"><div class="cat">QR Codes</div><div class="amount">$2,400</div><div class="note">9%</div></div>
+            <div class="category-card"><div class="cat">Energy</div><div class="amount">$600</div><div class="note">2%</div></div>
+            <div class="category-card"><div class="cat">Contingency</div><div class="amount">$1,234</div><div class="note">5%</div></div>
+          </div>
+          <table class="model-table">
+            <thead><tr><th>Category</th><th>Line Item</th><th class="num">Annual Cost</th></tr></thead>
+            <tbody>
+              <tr><td>Software</td><td>RTLS Software Subscription (7 units × $1,900/yr)</td><td class="num">$13,300</td></tr>
+              <tr><td>Hardware Maint.</td><td>RTLS Unit Replacements (1/yr avg, $7,359 + $168 swap labor)</td><td class="num">$7,527</td></tr>
+              <tr><td>Hardware Maint.</td><td>QR Reader Maintenance / Replacement</td><td class="num">$850</td></tr>
+              <tr><td>QR Codes</td><td>QR Code Attrition (120 per year flat)</td><td class="num">$2,400</td></tr>
+              <tr><td>Energy</td><td>Power – Peripheral Devices</td><td class="num">$600</td></tr>
+              <tr><td>Contingency</td><td>Harsh-Environment Reserve (5% of above)</td><td class="num">$1,234</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="2">Total Annual Operating Cost</td><td class="num">$25,911</td></tr></tfoot>
+          </table>
         </article>
-        <article class="cost-image-card accent-card card">
-          <img src="/images/costing-03-roi.png" alt="Savings and ROI table for scrap tracking proposal">
+
+        <article class="model-block accent-card card">
+          <h3>Savings &amp; ROI</h3>
+          <div class="model-cards">
+            <div class="model-card"><div class="label">Payback Period</div><div class="value">0.7 yrs</div></div>
+            <div class="model-card"><div class="label">5-Year ROI</div><div class="value">227%</div></div>
+            <div class="model-card"><div class="label">5-Year Net Benefit</div><div class="value">$493,626</div></div>
+          </div>
+          <div class="bar-card">
+            <h3 style="font-size:16px;margin-bottom:18px;">Cumulative Net Cash Flow</h3>
+            <div class="bar-chart">
+              <div class="bar negative" style="height:20%;">-$75,920</div>
+              <div class="bar" style="height:8%;">+$31,357</div>
+              <div class="bar" style="height:22%;">+$141,852</div>
+              <div class="bar" style="height:39%;">+$255,661</div>
+              <div class="bar" style="height:56%;">+$372,885</div>
+              <div class="bar" style="height:74%;">+$493,626</div>
+            </div>
+          </div>
+          <table class="model-table">
+            <thead><tr><th>Year</th><th class="num">Capex</th><th class="num">Opex</th><th class="num">Savings</th><th class="num">Net</th><th class="num">Cumulative</th></tr></thead>
+            <tbody>
+              <tr><td>Year 0</td><td class="num">$75,920</td><td class="num">–</td><td class="num">–</td><td class="num">-$75,920</td><td class="num">-$75,920</td></tr>
+              <tr><td>Year 1</td><td class="num">–</td><td class="num">$26,688</td><td class="num">$133,965</td><td class="num">+$107,277</td><td class="num">+$31,357</td></tr>
+              <tr><td>Year 2</td><td class="num">–</td><td class="num">$27,489</td><td class="num">$137,984</td><td class="num">+$110,495</td><td class="num">+$141,852</td></tr>
+              <tr><td>Year 3</td><td class="num">–</td><td class="num">$28,314</td><td class="num">$142,123</td><td class="num">+$113,809</td><td class="num">+$255,661</td></tr>
+              <tr><td>Year 4</td><td class="num">–</td><td class="num">$29,163</td><td class="num">$146,387</td><td class="num">+$117,224</td><td class="num">+$372,885</td></tr>
+              <tr><td>Year 5</td><td class="num">–</td><td class="num">$30,038</td><td class="num">$150,779</td><td class="num">+$120,741</td><td class="num">+$493,626</td></tr>
+            </tbody>
+            <tfoot><tr><td>5-Year Total</td><td class="num">$75,920</td><td class="num">$141,692</td><td class="num">$711,238</td><td class="num">$493,626</td><td class="num">$493,626</td></tr></tfoot>
+          </table>
         </article>
       </div>
 
@@ -856,7 +959,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
           <div class="arconic-brand">
             <img src="/images/arconic-logo.png" alt="Arconic" class="footer-client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
             <div class="footer-client-name-fallback" style="display:none"><div class="arconic-name">Arconic</div></div>
-            <div class="arconic-label">Prepared for Arconic</div>
+            <div class="arconic-label">Prepared for Arconic Lancaster</div>
           </div>
           <span class="prop-footer-copy">© 2026 LocaXion · Strictly Confidential</span>
         </div>

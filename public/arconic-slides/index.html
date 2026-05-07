@@ -74,8 +74,8 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 }
 
 /* ── Layout container ── */
-.container { width: min(calc(100% - 80px), 1000px); margin: 0 auto; }
-.wide-container { width: min(calc(100% - 80px), 1000px); margin: 0 auto; }
+.container { width: min(calc(100% - 72px), 920px); margin: 0 auto; }
+.wide-container { width: min(calc(100% - 72px), 920px); margin: 0 auto; }
 
 /* ── Cards ── */
 .card {
@@ -533,7 +533,7 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 
 /* ── Responsive ── */
 @media (max-width: 1000px) {
-  .container, .wide-container { width: calc(100% - 48px); }
+  .container, .wide-container { width: calc(100% - 40px); }
 }
 
 
@@ -544,6 +544,65 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 .flow-step .step-num { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
 .flow-step h3 { font-size: 18px; line-height: 1.2; margin-bottom: 10px; letter-spacing: -.02em; }
 .flow-step p { color: var(--text-2); font-size: 15px; line-height: 1.55; }
+.scrap-animation-card { margin-top: 24px; padding: 28px; overflow: hidden; }
+.scrap-animation-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+.scrap-animation-head h3 { font-size: 20px; font-weight: 900; letter-spacing: -.03em; }
+.scrap-animation-head span { color: var(--muted); font-family: "DM Mono", monospace; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.facility-map {
+  position: relative; width: 100%; aspect-ratio: 1024 / 611; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 18px;
+  background: #fff url("/images/scrap-layout.png") center / cover no-repeat;
+}
+.facility-map::after {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(255,255,255,.08); pointer-events: none;
+}
+.route-overlay { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.geofence {
+  position: absolute; z-index: 3; border: 3px solid; border-radius: 4px;
+  background: rgba(255,255,255,.10); box-shadow: 0 0 0 2px rgba(255,255,255,.6);
+}
+.geofence.slitter { left: 65.7%; top: 64.8%; width: 3.4%; height: 5.6%; border-color: #ef4444; }
+.geofence.scale { left: 51.9%; top: 43.8%; width: 4.2%; height: 4.7%; border-color: #0e7afe; }
+.geofence.staging { left: 52.5%; top: 26.2%; width: 4.2%; height: 6.0%; border-color: #22c55e; }
+.geofence-label {
+  position: absolute; left: 50%; top: calc(100% + 7px); transform: translateX(-50%);
+  min-width: max-content; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.94);
+  color: var(--text); font-family: "DM Mono", monospace; font-size: 9px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 6px 16px rgba(17,24,39,.12);
+}
+.status-chip {
+  position: absolute; z-index: 5; max-width: 260px; padding: 9px 12px; border-radius: 12px;
+  background: rgba(255,255,255,.96); border: 1px solid var(--line);
+  box-shadow: 0 14px 28px rgba(17,24,39,.14); font-size: 12px; font-weight: 800; line-height: 1.25;
+  opacity: 0; animation: statusCycle 16s linear infinite;
+}
+.status-chip.slitter-a { left: 56%; top: 69%; color: #ef4444; animation-delay: 0s; }
+.status-chip.slitter-b { left: 54%; top: 69%; color: #ef4444; animation-delay: 3.1s; }
+.status-chip.scale { left: 38%; top: 37%; color: #0e7afe; animation-delay: 7.0s; }
+.status-chip.staging { left: 58%; top: 19%; color: #16a34a; animation-delay: 11.4s; }
+.forklift-dot {
+  position: absolute; z-index: 6; left: 54%; top: 78%;
+  width: 18px; height: 18px; border-radius: 50%; background: var(--gradient);
+  border: 3px solid #fff; box-shadow: 0 0 0 3px rgba(99,102,241,.22), 0 12px 24px rgba(17,24,39,.22);
+  animation: forkliftMove 16s ease-in-out infinite;
+}
+.forklift-dot::after {
+  content: "Forklift #1"; position: absolute; left: 50%; top: 24px; transform: translateX(-50%);
+  padding: 4px 8px; border-radius: 999px; background: #111827; color: #fff; white-space: nowrap;
+  font-size: 10px; font-weight: 800; box-shadow: 0 8px 18px rgba(17,24,39,.18);
+}
+@keyframes forkliftMove {
+  0%, 8% { left: 54%; top: 78%; }
+  22%, 31% { left: 67.4%; top: 67.4%; }
+  55%, 63% { left: 53.2%; top: 46.0%; }
+  82%, 100% { left: 54.8%; top: 29.0%; }
+}
+@keyframes statusCycle {
+  0%, 18% { opacity: 0; transform: translateY(8px); }
+  22%, 43% { opacity: 1; transform: translateY(0); }
+  47%, 100% { opacity: 0; transform: translateY(-6px); }
+}
 .scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .scope-item { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 12px 32px rgba(17,24,39,.05); }
 .scope-item .scope-kicker { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
@@ -560,7 +619,12 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
 .pricing-table tr.section-row td { background: #f8fafc; color: var(--text); font-size: 16px; font-weight: 900; letter-spacing: -.02em; text-align: center; }
 .pricing-table tr.placeholder td { color: var(--muted); }
 .pricing-table td.item-no { font-family: "DM Mono", monospace; color: var(--muted); font-size: 12px; }
-@media (max-width: 900px) { .flow-grid, .scope-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .flow-grid, .scope-grid { grid-template-columns: 1fr; }
+  .scrap-animation-card { padding: 18px; }
+  .geofence-label { font-size: 7px; }
+  .status-chip { max-width: 190px; font-size: 10px; }
+}
 
 @media (max-width: 768px) {
   .topbar { padding: 0 24px; }
@@ -631,6 +695,30 @@ img.lx-logo-img { width: auto !important; height: 56px !important; max-width: 30
           <div class="flow-step"><div class="step-num">Step 02</div><h3>Forklift pickup</h3><p>Forklifts identify QR-coded scrap bins and associate movement with the live scrap record.</p></div>
           <div class="flow-step"><div class="step-num">Step 03</div><h3>Scale telemetry</h3><p>Two scale-side IoT modules publish real-time weight for each tracked scrap movement.</p></div>
           <div class="flow-step"><div class="step-num">Step 04</div><h3>Dashboard view</h3><p>Location, grade, and weight converge into operational and executive dashboards on-premise.</p></div>
+        </div>
+      </article>
+      <article class="scrap-animation-card accent-card card">
+        <div class="scrap-animation-head">
+          <h3>Animated scrap movement cycle</h3>
+          <span>Geofence flow · Bin #25</span>
+        </div>
+        <div class="facility-map" aria-label="Animated floor layout showing forklift movement from Slitter 11 Scrap Collection to Weight Scales and Scrap Bin Staging">
+          <svg class="route-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <marker id="redArrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#ef4444"/></marker>
+              <marker id="greenArrow" markerWidth="6" markerHeight="6" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#22c55e"/></marker>
+            </defs>
+            <path d="M 67.4 67.5 L 70.5 67.5 L 70.5 47 L 54.1 47" fill="none" stroke="#ef4444" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#redArrow)"/>
+            <path d="M 53.8 45.5 L 57.8 45.5 L 57.8 28.8 L 55.6 28.8" fill="none" stroke="#22c55e" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#greenArrow)"/>
+          </svg>
+          <div class="geofence slitter"><span class="geofence-label">Slitter 11 Scrap Collection</span></div>
+          <div class="geofence scale"><span class="geofence-label">Weight Scales</span></div>
+          <div class="geofence staging"><span class="geofence-label">Scrap Bin Staging</span></div>
+          <div class="status-chip slitter-a">Scrap Bin #25 Full</div>
+          <div class="status-chip slitter-b">Scrap Bin #25 Loaded with Grade 5025</div>
+          <div class="status-chip scale">Weight 5000lbs for Scrap Bin #25 Collected</div>
+          <div class="status-chip staging">Scrap Bin #25 Stored with Grade 5025 and Weight 5000lbs in Staging</div>
+          <div class="forklift-dot" aria-hidden="true"></div>
         </div>
       </article>
     </div>
